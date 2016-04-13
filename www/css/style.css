@@ -1,0 +1,65 @@
+.item-icon-right .size150p {
+	font-size: 150%;
+}
+
+.item-body .bigText {
+	font-size: 32px;
+	line-height: 32px;
+	font-weight: lighter;
+}
+
+.item-body .lightText {
+    color: rgb(178,178,178);
+    text-align: left;
+
+}
+
+.item-divider {
+	background-color: #fff;
+}
+
+.bezTransition {
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.bezTransition.ng-hide-add, .bezTransition.ng-hide-remove {
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.bezTransition.ng-hide {
+  opacity: 0;
+  
+}
+
+.bezTransition.ng-hide-add .moveRight, .bezTransition.ng-hide-remove .moveRight {
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.bezTransition.ng-hide .moveRight {
+	right: -10px;
+}
+
+.item-body .row, .item-body .row .col {
+	padding: 0;
+}
+
+.item-body .item-icon-right {
+	padding-right: 0;
+}
+
+.item-body .row h2 {
+	font-size: 18px;
+	padding-bottom: 5px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.item-body .row .col {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+a.button.icon:before {
+	padding-right: 10px;
+}
