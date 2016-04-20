@@ -1,3 +1,25 @@
 <ion-view title="Stats" id="page3">
-    <ion-content overflow-scroll="true" padding="true" class="has-header"></ion-content>
+    <ion-content padding="true" class="has-header">
+        <div class="button-bar">
+            <button id="stats-button11" style="font-weight:600;" class="button button-stable  button-block" ng-class="{'button-positive':selectedTimeFrame=='yr'}" ng-click="selectTimeFrame('yr')">Yr</button>
+            <button id="stats-button12" style="font-weight:600;" class="button button-stable  button-block" ng-class="{'button-positive':selectedTimeFrame=='mo'}" ng-click="selectTimeFrame('mo')">Mo</button>
+            <button id="stats-button13" style="font-weight:600;" class="button button-stable  button-block" ng-class="{'button-positive':selectedTimeFrame=='wk'}" ng-click="selectTimeFrame('wk')">Wk</button>
+            <button id="stats-button14" style="font-weight:600;" class="button button-stable  button-block icon ion-calendar" ng-class="{'button-positive':selectedTimeFrame=='cu'}" ng-click="selectTimeFrame('cu')"></button>
+        </div>
+        <h4 id="stats-heading2" style="color:#000000;">Total earnings in April</h4>
+        <h1 id="stats-heading1" class="greenText" ng-class="" style="font-weight:300;">{{ totalProfit | number:2 }}</h1>
+        <div id="stats-markdown5" style="color:#00CC00;">
+            <p>(13.0%)</p>
+        </div>
+        <div class="spacer" style="width: 300px; height: 36px;"></div>
+        <ion-list></ion-list>
+        <h4 id="stats-heading3" style="color:#000000;">History</h4>
+        <ion-list>
+            <ion-item ng-repeat="(stockId, stock) in stocks" class="item-icon-right" ui-sref="tabsController.stockDetail({stockId:{{stockId}}})">
+                {{stock.symbol}}
+                <span class="listTextRight">{{ (stock.sellPrice/stock.price-1)*100 | number:2 }}%</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>

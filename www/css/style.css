@@ -38,6 +38,40 @@
 .bezTransition.ng-hide .moveRight {
 	right: -10px;
 }
+/*
+.colapseTransition.ng-enter {
+  	transition:all cubic-bezier(0.4, 0, 1, 1) 0.5s;
+}
+
+.colapseTransition {
+	height: 45px;
+}*/
+
+.padding > .list .item.colapseTransition.ng-enter {
+	-webkit-animation: fadeInDown 1s;
+    animation: fadeInDown 1s;
+}
+
+.padding > .list .item.colapseTransition.ng-leave {
+	-webkit-animation: fadeOutUp 1s;
+    animation: fadeOutUp 1s;
+}
+
+.symbol-look-up {
+	transition:all cubic-bezier(0.4, 0, 1, 1) 0.5s;
+	height: 0px;
+	overflow: hidden;
+}
+
+.symbol-look-up-open {
+	height: 240px;
+}
+
+/*.padding > .list .item.colapseTransition.ng-enter-active {
+	height: 45px;
+	padding: 12px;
+
+}*/
 
 .item-body .row, .item-body .row .col {
 	padding: 0;
@@ -62,4 +96,29 @@
 
 a.button.icon:before {
 	padding-right: 10px;
+}
+
+.padding > .list .item.subItem {
+    margin: 0 12px;
+	padding: 12px 16px;
+}
+
+/*=======================
+
+  STATS
+
+========================*/
+
+.greenText {
+	color: #00cc00;
+}
+
+.redText {
+	color: #cc0000;
+}
+
+ion-item .listTextRight {
+    position: absolute;
+    right: 0px;
+    margin-right: 60px;
 }

@@ -31,6 +31,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('tabsController.stockDetail', {
+    url: '/stockDetail/:stockId',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/stockDetail.html',
+        controller: 'stockDetailCtrl'
+      }
+    }
+  })
+
   .state('tabsController.more', {
     url: '/more',
     views: {

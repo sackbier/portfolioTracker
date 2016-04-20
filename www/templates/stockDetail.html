@@ -1,0 +1,24 @@
+<ion-view title="Stock Detail" id="page6">
+    <ion-content padding="true" class="has-header">
+        <div class="spacer" style="width: 300px; height: 45px;"></div>
+        <h4 id="stockDetail-heading4" style="color:#000000;">{{stock.symbol}}</h4>
+        <h4 id="stockDetail-heading7" style="color:#999;">{{stock.qty}} pcs</h4>
+        <h1 id="stockDetail-heading5" class="greenText" ng-class="{ redText: (stock.sellPrice-stock.price) < 0 }" style=";font-weight:300;">{{(stock.sellPrice-stock.price)*stock.qty | number:2 }}</h1>
+        <div id="stockDetail-markdown7" style="color:#00CC00;">
+            <p>({{(stock.sellPrice-stock.price)/stock.price*100 | number:2 }}%)</p>
+        </div>
+        <div class="spacer" style="width: 300px; height: 36px;"></div>
+        <ion-list></ion-list>
+        <h4 id="stockDetail-heading6" style="color:#999999;">BUY</h4>
+        <div id="stockDetail-markdown8" style="color:#000000;">
+            <p>${{stock.price*stock.qty | number:2 }} (${{stock.price | number:2 }}) {{stock.buyDate | date}}</p>
+        </div>
+        <div>
+            <hr>
+        </div>
+        <h4 id="stockDetail-heading8" style="color:#999999;">SELL</h4>
+        <div id="stockDetail-markdown9" style="color:#000000;">
+            <p>${{stock.sellPrice*stock.qty | number:2 }} (${{stock.sellPrice | number:2 }}) {{stock.sellDate | date}}</p>
+        </div>
+    </ion-content>
+</ion-view>
