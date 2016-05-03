@@ -36,12 +36,7 @@ stockPorfolioServices.factory('Stocks', [function(){
 	    // constructs a stock object
 	    // takes the basic info from a given object and adds aditional fields
 	    newStock: function(stock) {
-	    	if(stock.isSold) {
-	    		stock.sellDate = Date.now() - (1000*60*60*24*30);
-	    		// for testing time frames; Date.now()
-	    	} else {
-	    		stock.sellDate = null;
-	    	}
+
 	      	return {
 		        symbol: stock.symbol,
 		        price: stock.price,

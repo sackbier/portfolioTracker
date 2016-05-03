@@ -10,8 +10,8 @@ angular.module('app.routes', [])
     
   
 
-      .state('tabsController.portfolio', {
-        cache: false,
+  .state('tabsController.portfolio', {
+    cache: false,
     url: '/portfolio',
     views: {
       'tab1': {
@@ -22,6 +22,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.stats', {
+    cache: false,
     url: '/stats',
     views: {
       'tab3': {

@@ -25,7 +25,7 @@
             </label>
             <label class="item item-input" ng-show="!buyButton">
                 <span class="input-label">Sell Date</span>
-                <input type="text" placeholder="" ng-model="stock.sellDate" ng-change="">
+                <input type="date" placeholder="" ng-model="stock.sellDate" ng-change="">
             </label>
             <label class="item item-input">
                 <span class="input-label">Quantity</span>
@@ -41,6 +41,8 @@
                 <span class="input-label">Total</span>
                 <input type="number" placeholder="0" ng-model="stock.total">
             </label>
+
+            <h5>Buy Date: {{ stock.buyDate | date }}<span ng-show="{{stock.isSold}}"> | Sell Date: {{ stock.sellDate | date }}</span></h5>
 
             <a ng-click="createStock(stock)" ui-sref="tabsController.portfolio" id="addSymbol-button9" style="border-radius:6px 6px 6px 6px;" class="button button-balanced button-large button-block icon ion-archive">Save</a>
     </ion-content>
