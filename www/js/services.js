@@ -14,7 +14,7 @@ stockPorfolioServices.factory('Stocks', [function(){
 
 	      }
 
-	      // Basick "Stocks" MODEL
+	      // Basic "Stocks" MODEL
 	      // no stocks in storage: return new object
 	      // including an initial nextId and empty data object
 	      return {

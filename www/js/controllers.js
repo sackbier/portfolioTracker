@@ -196,13 +196,29 @@ angular.module('app.controllers', [])
 
 	var scheduledRequest = null;
 
-	var isNewStock; // gets initized below
+	var isExistingStock; // gets initized below
 	
 	//--------------------------------------------------------
 	//### SCOPE FUNCTIONS ####################################
 	//--------------------------------------------------------
 
-	$scope.calcTotal = function calcTotal() {
+	$scope.calcTotal = calcTotal;
+	$scope.setStockQty = setStockQty;
+	$scope.toggleBuyButton = toggleBuyButton;
+	$scope.closeSymbolList = closeSymbolList;
+	$scope.setSymbol = setSymbol;
+	$scope.createStock = createStock;
+	$scope.getSymbol = getSymbol;
+
+	//--------------------------------------------------------
+	//### DIRECTLY INVOKED ###################################
+	//--------------------------------------------------------
+
+	isExistingStock = checkisExistingStock();
+
+	//////////////////////////////////////////////////////////////////////////////
+
+	function calcTotal() {
 		if(typeof $scope.stock.price === "undefined" || typeof $scope.stock.qty === "undefined") {
 			return;
 		} else {
@@ -210,37 +226,40 @@ angular.module('app.controllers', [])
 		}
 	};
 
-	$scope.setStockQty = function setStockQty(qty) {
+	function setStockQty(qty) {
 		$scope.stock.qty = qty;
 		$scope.calcTotal();
 	};
 
-	$scope.toggleBuyButton = function toggleBuyButton() {
+	function toggleBuyButton() {
 		$scope.buyButton = !$scope.buyButton;
 		$scope.stock.isSold = !$scope.stock.isSold;
+		console.log("sell date:",$scope.stock.sellDate);
 		if(!$scope.stock.sellDate) {
 			$scope.stock.sellDate = new Date();
+		} else {
+			$scope.stock.sellDate = null;
 		}
 	};
 
-	$scope.closeSymbolList = function closeSymbolList() {
+	function closeSymbolList() {
 		if($scope.symbolList) $scope.symbolList = false;
 		$scope.symbolLookup = {};
 	}
 
-	$scope.setSymbol = function setSymbol(symbol) {
+	function setSymbol(symbol) {
 		$scope.stock.symbol = symbol;
 	}
 
-	$scope.createStock = function createStock(stock) {
+	function createStock(stock) {
 	// this is for both creating and updating a stock
 
 		// replace date string by a real Date object
 		// so it can be displayed nicely
-		stock = formatStockDate(stock);
+		if(stock.isSold) stock = formatStockDate(stock);
 
 		// if new stock, create
-		if(!isNewStock) {
+		if(!isExistingStock) {
 			stocks.data[Stocks.getId(stocks)] = Stocks.newStock(stock);
 			Stocks.save(stocks);
 		} 
@@ -251,7 +270,7 @@ angular.module('app.controllers', [])
 		}
 	};
 
-	$scope.getSymbol = function getSymbol() {
+	function getSymbol() {
 
 		// cancel old request when there is one pending
 		if(scheduledRequest) {
@@ -286,8 +305,6 @@ angular.module('app.controllers', [])
 	//### UTILITY FUNCTIONS ##################################
 	//--------------------------------------------------------
 
-	isNewStock = checkIsNewStock();
-
 	function formatStockDate(stock) {
 		date = stock.sellDate;
 		formatedDate = new Date(date);
@@ -295,14 +312,16 @@ angular.module('app.controllers', [])
 		return stock;
 	}
 
-	function checkIsNewStock() {
+	function checkisExistingStock() {
 	// checks the url parameters for a stock id
 	// if there is one the corresponding stock is loaded
 		if($stateParams.stockId) {
 			$scope.stock = stocks.data[$stateParams.stockId];
 			$scope.calcTotal();
-			if($scope.stock.isSold) $scope.buyButton = false;
-			$scope.stock.sellDate = new Date($scope.stock.sellDate) //$filter('date')($scope.stock.sellDate,'dd.MM.yyyy');
+			if($scope.stock.isSold) {
+				$scope.buyButton = false;
+				$scope.stock.sellDate = new Date($scope.stock.sellDate) //$filter('date')($scope.stock.sellDate,'dd.MM.yyyy');
+			}
 			return true;
 		} else {
 			return false;
